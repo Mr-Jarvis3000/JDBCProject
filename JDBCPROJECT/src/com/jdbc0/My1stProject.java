@@ -165,8 +165,20 @@ class Dao {
 				System.out.println("Eid   Ename   Esalary");
 				System.out.println(eid + " " + ename + " " + esalary);
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStacktrace();
+		} finally {
+			try{
+				if(rs != null && s != null && c != null){
+					rs.close();
+					s.close();
+					c.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
